@@ -16,10 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/display"
-            style="@style/display"
-            android:text="@string/display_default_text" />
+        <ScrollView style="@style/scroll">
+
+            <LinearLayout
+                style="@style/scroll_linear_layout_v"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/display"
+                    style="@style/display" />
+            </LinearLayout>
+        </ScrollView>
 
         <LinearLayout
             style="@style/linear_layout_h"

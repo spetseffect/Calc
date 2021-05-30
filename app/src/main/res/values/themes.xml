@@ -15,8 +15,6 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="button_simple">
-<!--        <item name="android:minWidth">100dp</item>-->
-<!--        <item name="android:minHeight">100dp</item>-->
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -30,6 +28,7 @@
         <item name="strokeWidth">1dp</item>
         <item name="strokeColor">@color/black</item>
         <item name="cornerRadius">0dp</item>
+        <item name="android:onClick">onBtnClick</item>
     </style>
     <style name="button_simple_double_size" parent="button_simple">
         <item name="android:layout_weight">2</item>
@@ -48,12 +47,23 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
     </style>
-    <style name="display">
+    <style name="scroll">
         <item name="android:layout_weight">2</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
+        <item name="android:weightSum">1</item>
+        <item name="android:background">@color/black</item>
+    </style>
+    <style name="scroll_linear_layout_v">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="display">
+<!--        <item name="android:layout_weight">2</item>-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">70sp</item>
-        <item name="android:background">@color/black</item>
+<!--        <item name="android:background">@color/black</item>-->
     </style>
 </resources>
