@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/avaUser"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Name"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/avaUser"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Country"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/avaUser"
                 app:layout_constraintTop_toBottomOf="@+id/fName" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="25"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/avaUser"
                 app:layout_constraintTop_toBottomOf="@+id/country" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
