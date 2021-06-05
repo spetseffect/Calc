@@ -20,4 +20,7 @@
     <string name="btn_0">0</string>
     <string name="btn_dot">.</string>
     <string name="btn_result">=</string>
+    <string name="menu_item_calc">Калькулятор</string>
+    <string name="menu_item_users">Пользователи</string>
+    <string name="menu_item_adduser">Добавить пользователя</string>
 </resources>

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +19,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         display = findViewById(R.id.display);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu myMenu) {
+        getMenuInflater().inflate(R.menu.menu, myMenu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+//        TextView menuTextView = findViewById(R.id.menu_textview);
+        switch(id) {
+            case R.id.menuitem_calc:
+//                menuTextView.setText("Настройки");
+                return true;
+            case R.id.menuitem_users:
+//                menuTextView.setText("Открыть");
+                return true;
+            case R.id.menuitem_adduser:
+//                menuTextView.setText("Сохранить");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     public void onBtnClick(View view){
@@ -162,4 +186,5 @@ public class MainActivity extends AppCompatActivity {
             return Long.toString((long) d);
         return Double.toString(d);
     }
+
 }
