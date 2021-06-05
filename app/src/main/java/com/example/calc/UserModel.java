@@ -1,12 +1,5 @@
 package com.example.calc;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.Date;
 
 public class UserModel {
@@ -21,14 +14,14 @@ public class UserModel {
   устаревшие методы класса Date.
   A хотел использовать класс LocalDate (API 26).
 */
-//    public UserModel(int id,String fName,String lName,long birthday,String country,String city) {
-//        this.id = id;
-//        this.fName = fName;
-//        this.lName = lName;
-//        --this.birthday = birthday;
-//        this.country = country;
-//        this.city = city;
-//    }
+    public UserModel(int id,String fName,String lName,Date birthday,String country,String city) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.birthday = birthday;
+        this.country = country;
+        this.city = city;
+    }
 
     public int Id() {return id;}
     public void setId(int id) {this.id = id;}
@@ -40,14 +33,8 @@ public class UserModel {
         long ageInMillis = new Date().getTime() - birthday.getTime();
         Date age = new Date(ageInMillis);
         return age.getYear()+" years old";
-//        long y = Year..until(birthday,LocalDate.now());
-//        return birthday;
     }
-    public void setBirthday(int yyyy, int mm, int dd) {
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(yyyy,mm,dd,0,0,0);
-        this.birthday = new Date(yyyy,mm,dd);
-    }
+    public void setBirthday(int yyyy, int mm, int dd) {this.birthday = new Date(yyyy,mm,dd);}
     public String Country() {return country;}
     public void setCountry(String country) {this.country = country;}
     public String City() {return city;}
