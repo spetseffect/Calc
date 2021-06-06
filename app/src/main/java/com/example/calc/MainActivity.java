@@ -1,19 +1,27 @@
 package com.example.calc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String arg1;
     private String arg2;
     private MathAction action;
     private TextView display;
+    private MenuItem mi_calc;
+    private MenuItem mi_users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,23 +29,32 @@ public class MainActivity extends AppCompatActivity {
         display = findViewById(R.id.display);
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu myMenu) {
-        getMenuInflater().inflate(R.menu.menu, myMenu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        mi_calc=menu.findItem(R.id.menuitem_calc);
+        mi_users=menu.findItem(R.id.menuitem_users);
         return true;
     }
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-//        TextView menuTextView = findViewById(R.id.menu_textview);
+        FragmentContainerView f=findViewById(R.id.fragment_container);
         switch(id) {
             case R.id.menuitem_calc:
-//                menuTextView.setText("Настройки");
+                f.setVisibility(View.INVISIBLE);
+                item.setEnabled(false);
+                mi_users.setEnabled(true);
                 return true;
             case R.id.menuitem_users:
-//                menuTextView.setText("Открыть");
+                GridView flu=findViewById(R.id.fragm_list_users);
+                List<UserModel> data = UsersList.users();
+                flu.setAdapter(new UserListAdapter(this,data));
+                f.setVisibility(View.VISIBLE);
+                item.setEnabled(false);
+                mi_calc.setEnabled(true);
                 return true;
             case R.id.menuitem_adduser:
-//                menuTextView.setText("Сохранить");
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -186,5 +203,6 @@ public class MainActivity extends AppCompatActivity {
             return Long.toString((long) d);
         return Double.toString(d);
     }
+
 
 }

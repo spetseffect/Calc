@@ -13,6 +13,7 @@ public class UserModel {
   в связи с разработкой под API 23, для вычисления возраста пришлось использовать
   устаревшие методы класса Date.
   A хотел использовать класс LocalDate (API 26).
+  И хрнить даты оказалось удобнее в Date чем в long
 */
     public UserModel(int id,String fName,String lName,Date birthday,String country,String city) {
         this.id = id;
@@ -30,9 +31,13 @@ public class UserModel {
     public String lastName() {return lName;}
     public void setLastName(String lName) {this.lName = lName;}
     public String Age() {
-        long ageInMillis = new Date().getTime() - birthday.getTime();
-        Date age = new Date(ageInMillis);
-        return age.getYear()+" years old";
+        Date currDate = new Date();
+        Date birthdayInCurrentYear=new Date(
+                currDate.getYear()+1900,
+                birthday.getMonth(),
+                birthday.getDate());
+        int correction =birthdayInCurrentYear.before(currDate)?1:0;
+        return "Возраст (полных лет): "+(currDate.getYear()+1900-birthday.getYear()-correction);
     }
     public void setBirthday(int yyyy, int mm, int dd) {this.birthday = new Date(yyyy,mm,dd);}
     public String Country() {return country;}
