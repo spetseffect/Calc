@@ -32,7 +32,6 @@ public class UserListAdapter extends ArrayAdapter<UserModel> {
         iv.setImageResource(userli.Id());
         TextView fName = convertView.findViewById(R.id.fName);
         fName.setText(userli.firstName());
-        Log.d("FirstName",userli.firstName());
         TextView lName = convertView.findViewById(R.id.lName);
         lName.setText(userli.lastName());
         TextView country = convertView.findViewById(R.id.country);

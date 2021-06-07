@@ -1,16 +1,18 @@
 package com.example.calc;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView display;
     private MenuItem mi_calc;
     private MenuItem mi_users;
+    private AlertDialog alertDialog;
+    private Dialog dialog;
+    private UsersList usersList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 mi_calc.setEnabled(true);
                 return true;
             case R.id.menuitem_adduser:
+                ShowDialog(DialogType.ADD_USER);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -203,6 +209,56 @@ public class MainActivity extends AppCompatActivity {
             return Long.toString((long) d);
         return Double.toString(d);
     }
+    private void ShowDialog(DialogType type){
+        switch (type){
+            case ADD_USER:
+                dialog = new Dialog(MainActivity.this);
+                dialog.setTitle("Добавить нового пользователя");
+                dialog.setContentView(R.layout.dialod_adduser);
+                EditText fname=(EditText) dialog.findViewById(R.id.pt_adduser_fname);
+                EditText lname=(EditText) dialog.findViewById(R.id.pt_adduser_lname);
+                EditText country=(EditText) dialog.findViewById(R.id.pt_adduser_country);
+                EditText city=(EditText) dialog.findViewById(R.id.pt_adduser_city);
+                Button btnOK=(Button)dialog.findViewById(R.id.btn_adduser_ok);
+                Button btnCancel=(Button)dialog.findViewById(R.id.btn_adduser_cansel);
+                btnOK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        UsersList.addUser(
+                                fname.getText().toString(),
+                                lname.getText().toString(),
+                                country.getText().toString(),
+                                city.getText().toString());
+                        fname.setText("");
+                        lname.setText("");
+                        country.setText("");
+                        city.setText("");
+                        dialog.dismiss();
+                        ShowDialog(DialogType.SUCCESSFUL);
+                    }
+                });
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fname.setText("");
+                        lname.setText("");
+                        country.setText("");
+                        city.setText("");
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
 
+                break;
+            case SUCCESSFUL:
+                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                builder.setTitle("Успех!")
+                        .setMessage("Пользователь добавлен.")
+                        .setNeutralButton("OK",(dialog, which) -> {});
+                alertDialog = builder.create();
+                alertDialog.show();
+                break;
+        }
+    }
 
 }
